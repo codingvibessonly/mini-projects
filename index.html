@@ -1,29 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>3D Loading Page</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Super Cute Panda Clock</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="loading-wrapper">
-    <div class="cube">
-      <div class="face front">L</div>
-      <div class="face back">O</div>
-      <div class="face right">A</div>
-      <div class="face left">D</div>
-      <div class="face top">I</div>
-      <div class="face bottom">N</div>
+  <div class="panda">
+    <div class="ear left-ear"></div>
+    <div class="ear right-ear"></div>
+    
+    <div class="face">
+      <div class="eye left-eye"><div class="eyeball"></div></div>
+      <div class="eye right-eye"><div class="eyeball"></div></div>
+      <div class="nose"></div>
+      <div class="mouth"></div>
     </div>
-    <p class="loading-text">Loading... <span id="percent">0%</span></p>
-    <div class="progress-bar">
-      <div class="progress" id="progress"></div>
-    </div>
-  </div>
 
-  <!-- 🔊 Audio element for loading sound -->
-  <audio id="loading-audio" src="loading.mp3" preload="auto"></audio>
+    <div class="hand left-hand"></div>
+    <div class="hand right-hand"></div>
+
+    <div class="clock" id="clock">00:00:00</div>
+
+    <div class="foot left-foot"></div>
+    <div class="foot right-foot"></div>
+  </div>
 
   <script src="script.js"></script>
 </body>

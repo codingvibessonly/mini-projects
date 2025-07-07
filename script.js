@@ -1,40 +1,19 @@
-const percentText = document.getElementById("percent");
-const progressBar = document.getElementById("progress");
-const audio = document.getElementById("loading-audio");
+function updateClock() {
+  const clock = document.getElementById("clock");
+  const now = new Date();
 
-let percent = 0;
-let interval;
+  let h = now.getHours();
+  const m = String(now.getMinutes()).padStart(2, '0');
+  const s = String(now.getSeconds()).padStart(2, '0');
 
-function startLoading() {
-  // Play loading audio
-  audio.currentTime = 0;
-  audio.play();
+  const ampm = h >= 12 ? 'PM' : 'AM';
 
-  // Adjust for 12 seconds total duration
-  interval = setInterval(() => {
-    percent++;
-    percentText.textContent = `${percent}%`;
-    progressBar.style.width = `${percent}%`;
+  h = h % 12;
+  h = h ? h : 12; // if hour is 0, show 12
 
-    if (percent >= 100) {
-      clearInterval(interval);
-
-      // Stop audio
-      audio.pause();
-      audio.currentTime = 0;
-
-      setTimeout(() => {
-        percent = 0;
-        percentText.textContent = "0%";
-        progressBar.style.width = "0%";
-        startLoading(); // Optional: remove if you want one-time load
-      }, 2000);
-    }
-  }, 120); // 12 seconds total: 100 steps × 120ms = 12000ms
+  const hour = String(h).padStart(2, '0');
+  clock.textContent = `${hour}:${m}:${s} ${ampm}`;
 }
 
-// Start loading on click
-window.addEventListener("click", () => {
-  if (interval) return;
-  startLoading();
-});
+setInterval(updateClock, 1000);
+updateClock();
