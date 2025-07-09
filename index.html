@@ -1,30 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>3D Loading Page</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eye Watching</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="loading-wrapper">
-    <div class="cube">
-      <div class="face front">L</div>
-      <div class="face back">O</div>
-      <div class="face right">A</div>
-      <div class="face left">D</div>
-      <div class="face top">I</div>
-      <div class="face bottom">N</div>
+    <div class="eyes">
+        <div><i></i></div>
+        <div><i></i></div>
     </div>
-    <p class="loading-text">Loading... <span id="percent">0%</span></p>
-    <div class="progress-bar">
-      <div class="progress" id="progress"></div>
-    </div>
-  </div>
-
-  <!-- 🔊 Audio element for loading sound -->
-  <audio id="loading-audio" src="loading.mp3" preload="auto"></audio>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

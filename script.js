@@ -1,40 +1,25 @@
-const percentText = document.getElementById("percent");
-const progressBar = document.getElementById("progress");
-const audio = document.getElementById("loading-audio");
+document.addEventListener('mousemove', (e) => {
+    const eyesContainer = document.querySelector('.eyes');
+    const eyes = document.querySelectorAll('.eyes > div');
 
-let percent = 0;
-let interval;
+    if (!eyesContainer || eyes.length !== 2) return;
 
-function startLoading() {
-  // Play loading audio
-  audio.currentTime = 0;
-  audio.play();
+    const containerRect = eyesContainer.getBoundingClientRect();
+    const containerCenterX = containerRect.left + containerRect.width / 2;
+    const containerCenterY = containerRect.top + containerRect.height / 2;
 
-  // Adjust for 12 seconds total duration
-  interval = setInterval(() => {
-    percent++;
-    percentText.textContent = `${percent}%`;
-    progressBar.style.width = `${percent}%`;
+    const angle = Math.atan2(e.clientY - containerCenterY, e.clientX - containerCenterX);
 
-    if (percent >= 100) {
-      clearInterval(interval);
+    const distance = Math.min(
+        eyes[0].offsetWidth / 4,
+        Math.sqrt(Math.pow(e.clientX - containerCenterX, 2) + Math.pow(e.clientY - containerCenterY, 2))
+    );
 
-      // Stop audio
-      audio.pause();
-      audio.currentTime = 0;
+    const moveX = Math.cos(angle) * distance;
+    const moveY = Math.sin(angle) * distance;
 
-      setTimeout(() => {
-        percent = 0;
-        percentText.textContent = "0%";
-        progressBar.style.width = "0%";
-        startLoading(); // Optional: remove if you want one-time load
-      }, 2000);
-    }
-  }, 120); // 12 seconds total: 100 steps × 120ms = 12000ms
-}
-
-// Start loading on click
-window.addEventListener("click", () => {
-  if (interval) return;
-  startLoading();
+    eyes.forEach(eye => {
+        const eyeBall = eye.querySelector('i');
+        eyeBall.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    });
 });
